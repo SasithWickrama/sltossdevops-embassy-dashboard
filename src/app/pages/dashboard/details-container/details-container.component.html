@@ -1,0 +1,43 @@
+<div class="row mt-5"  *ngIf="showTable">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="mb-0">Appointments Details [{{service}}]</h3>
+                    </div>
+                    <!-- <div class="col text-right">
+                    <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                    </div> -->
+                </div>
+            </div>
+            <div class="table-responsive">
+                <!-- Projects table -->
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Appoint Id</th>
+                            <th scope="col">Appoint Date</th>
+                            <th scope="col">Appoint Time</th>
+                            <th scope="col">Appoint User</th>
+                            <th scope="col">Service Type</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let i of appointmentsByaService">
+                        <tr>
+                            <th scope="row">
+                            {{i.appoint_id}}
+                            </th>
+                            <td>{{i.appoint_date}}</td>
+                            <td>{{i.appoint_time}}</td>
+                            <td><a routerLinkActive="active" [routerLink]="['/user-details', i.appoint_user]">{{i.appoint_user}}</a></td>
+                            <td>{{i.service_type}}</td>
+                            <td><button class="btn btn-outline-info" id="button-complete" (click)="completeAppointment(i.appoint_id)">Complete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,383 @@
+<div class="header pb-9 pt-6 pt-lg-6 d-flex align-items-center"
+    style=" background-image: url(assets/img/bg/welcome-cover.jpeg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-info opacity-8"></span>
+</div>
+<div *ngIf="taskAccess('EditMobileUser');else other_content" class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow">
+                <!-- <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="card-profile-image">
+                            <a href="javascript:void(0)">
+                                <img src="assets/img/user/Avatar-01.jpg" class="rounded-circle">
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="card-body pt-0 pt-md-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3>
+                            <span class="font-weight-light"></span>
+                        </h3>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="card bg-secondary shadow">
+                                <div class="card-header bg-white border-0">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h3 class="mb-0">Mobile User Account</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+                                        <h6 class="heading-small text-muted mb-4">User Information</h6>
+                                        <div class="pl-lg-4">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-first-name">First
+                                                            Name</label>
+                                                        <input type="text" id="input-first-name"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.firstName" name="firstName"
+                                                            placeholder="First Name" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['firstName'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['firstName'].valid"
+                                                            class="text-danger error-message">First name is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-last-name">Last
+                                                            Name</label>
+                                                        <input type="text" id="input-last-name"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.lastName" name="lastName"
+                                                            placeholder="Last Name" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['lastName'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['lastName'].valid"
+                                                            class="text-danger error-message">Last name is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-full-name">Full
+                                                            Name</label>
+                                                        <input type="text" id="input-full-name"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.fullName" name="fullName"
+                                                            placeholder="Full Name" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['fullName'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['fullName'].valid"
+                                                            class="text-danger error-message">Full name is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-nic">NIC</label>
+                                                        <input type="text" id="input-nic"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.nic" name="nic" placeholder="NIC"
+                                                            required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['nic'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['nic'].valid"
+                                                            class="text-danger error-message">NIC is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-gender">Gender</label>
+                                                        <input type="text" id="input-gender"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.gender" name="gender"
+                                                            placeholder="Gender" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['gender'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['gender'].valid"
+                                                            class="text-danger error-message">Gender is required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-date-of-birth">Date
+                                                            of Birth</label>
+                                                        <input type="text" id="input-date-of-birth"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="dateOfBirth" name="dateOfBirth"
+                                                            placeholder="Date of Birth" [minDate]="minDate"
+                                                            (ngModelChange)="onDateChange($event)" ngbDatepicker
+                                                            #d="ngbDatepicker" (click)="d.toggle()" type="text" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['dateOfBirth']?.valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['dateOfBirth'].valid"
+                                                            class="text-danger error-message">Date of Birth is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-age">Age</label>
+                                                        <input type="text" id="input-age"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.age" name="age" placeholder="Age"
+                                                            required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['age'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['age'].valid"
+                                                            class="text-danger error-message">Age is required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-passport-no">Passport No</label>
+                                                        <input type="text" id="input-passport-no"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.passportNo" name="passportNo"
+                                                            placeholder="Passport No" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['passportNo'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['passportNo'].valid"
+                                                            class="text-danger error-message">Passport No is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-emp-address">Employee Address</label>
+                                                        <input type="text" id="input-emp-address"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.empAddress" name="empAddress"
+                                                            placeholder="Employee Address" required>
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['empAddress'].valid"
+                                                            class="text-danger error-message">Employee Address is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-emp-contact">Employee Contact</label>
+                                                        <input type="number" id="input-emp-contact"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.empContact" name="empContact"
+                                                            placeholder="Employee Contact" required>
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['empContact'].valid"
+                                                            class="text-danger error-message">Employee Contact is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-salary">Salary</label>
+                                                        <input type="number" id="input-salary"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.salary" name="salary"
+                                                            placeholder="Salary" required>
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['salary'].valid"
+                                                            class="text-danger error-message">Salary is required</div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-status">Status</label>
+                                                        <select id="input-status"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.statusLabel" name="statusLabel"
+                                                            required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['statusLabel'].valid}">
+                                                            <option value="Enable">Enable</option>
+                                                            <option value="Disable">Disable</option>
+                                                        </select>
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['statusLabel'].valid"
+                                                            class="text-danger error-message">Status is required
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            
+                                            <hr class="my-4" />
+
+                                            <h6 class="heading-small text-muted mb-4">Contact Information</h6>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-emergency-contact">Emergency Contact</label>
+                                                        <input type="text" id="input-emergency-contact"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.emergencyContact"
+                                                            name="emergencyContact" placeholder="Emergency Contact"
+                                                            required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['emergencyContact'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['emergencyContact'].valid"
+                                                            class="text-danger error-message">Emergency Contact is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h6 class="heading-extra-small text-muted mb-4">UAE Contact Information</h6>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-uae-address">UAE
+                                                            Address</label>
+                                                        <input type="text" id="input-uae-address"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.uaeAddress" name="uaeAddress"
+                                                            placeholder="UAE Address" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['uaeAddress'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['uaeAddress'].valid"
+                                                            class="text-danger error-message">UAE Address is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-uae-mobile-no">UAE
+                                                            Mobile No</label>
+                                                        <input type="text" id="input-uae-mobile-no"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.uaeMobileNo" name="uaeMobileNo"
+                                                            placeholder="UAE Mobile No" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['uaeMobileNo'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['uaeMobileNo'].valid"
+                                                            class="text-danger error-message">UAE Mobile No is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-uae-contact-name">UAE Contact Name</label>
+                                                        <input type="text" id="input-uae-contact-name"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.uaeContactName" name="uaeContactName"
+                                                            placeholder="UAE Contact Name" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['uaeContactName'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['uaeContactName'].valid"
+                                                            class="text-danger error-message">UAE Contact Name is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-uae-contact-no">UAE
+                                                            Contact No</label>
+                                                        <input type="text" id="input-uae-contact-no"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.uaeContactNo" name="uaeContactNo"
+                                                            placeholder="UAE Contact No" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['uaeContactNo'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['uaeContactNo'].valid"
+                                                            class="text-danger error-message">UAE Contact No is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h6 class="heading-extra-small text-muted mb-4">Sri Lanka Contact Information</h6>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-sl-address">Sri
+                                                            Lanka Address</label>
+                                                        <input type="text" id="input-sl-address"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.slAddress" name="slAddress"
+                                                            placeholder="Sri Lanka Address" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['slAddress'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['slAddress'].valid"
+                                                            class="text-danger error-message">Sri Lanka Address is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-sl-contact-name">Sri Lanka Contact Name</label>
+                                                        <input type="text" id="input-sl-contact-name"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.slContactName" name="slContactName"
+                                                            placeholder="Sri Lanka Contact Name" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['slContactName'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['slContactName'].valid"
+                                                            class="text-danger error-message">Sri Lanka Contact Name is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-sl-contact-no">Sri
+                                                            Lanka Contact No</label>
+                                                        <input type="text" id="input-sl-contact-no"
+                                                            class="form-control form-control-alternative"
+                                                            [(ngModel)]="mobUser.slContactNo" name="slContactNo"
+                                                            placeholder="Sri Lanka Contact No" required
+                                                            [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['slContactNo'].valid}">
+                                                        <div *ngIf="userForm.submitted && !userForm.controls['slContactNo'].valid"
+                                                            class="text-danger error-message">Sri Lanka Contact No is
+                                                            required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 d-flex justify-content-end">
+                                                <button class="btn btn-outline-info" type="submit"
+                                                    id="button-addon1">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #other_content >
+    <div class="container-fluid mt--9">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        Unfortunately, it seems that your current access privileges do not encompass this resource. Please reach out to your system administrator to explore the possibility of obtaining the necessary permissions. Thank you for your understanding.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

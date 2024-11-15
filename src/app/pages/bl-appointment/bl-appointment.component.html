@@ -1,0 +1,40 @@
+<div class="header pb-6 pt-5 pt-md-8"
+    style="min-height: 250px; background-image: url(assets/img/bg/welcome-cover.jpeg); background-size: cover; background-position: center top;">
+    <span class="mask bg-gradient-info opacity-8"></span>
+    <div class="container-fluid">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+<div *ngIf="taskAccess('ViewBlockAppointment');else other_content" class="container-fluid mt--9" style="min-height: 500px;">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card shadow">
+                <div class="card-header bg-transparent py-0">
+                    <div *ngIf="taskAccess('CreateBlockAppointment')">
+                        <router-outlet name="createCard"></router-outlet>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="taskAccess('ViewBlockAppointment')">
+                        <router-outlet name="listCard"></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #other_content >
+    <div class="container-fluid mt--9">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        Unfortunately, it seems that your current access privileges do not encompass this resource. Please reach out to your system administrator to explore the possibility of obtaining the necessary permissions. Thank you for your understanding.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

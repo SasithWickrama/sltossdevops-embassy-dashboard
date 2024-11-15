@@ -1,0 +1,27 @@
+<form name="form" (ngSubmit)="submitform()" #f="ngForm">
+    <div class="row align-items-center py-1">
+        <div class="col-3">
+            <div ngbDropdown class="d-inline-block" style="width:100%">
+                <button type="button" class="btn btn-outline-primary btn-block" id="dropdownBasic1" ngbDropdownToggle>
+                    {{form.category}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="width:100%">
+                    <button ngbDropdownItem (click)="form.category='CONSULAR'">CONSULAR</button>
+                    <button ngbDropdownItem (click)="form.category='BUREAU'">SLBFE</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <input class="form-control datepicker" placeholder="Select Date" name="dp"
+            [minDate]="minDate"
+            [(ngModel)]="form.date" ngbDatepicker today #d="ngbDatepicker"
+            (click)="d.toggle()" type="text" />
+        </div>
+        <div class="col-3">
+            <ngb-timepicker [(ngModel)]="form.time" [minuteStep]="15"></ngb-timepicker>
+        </div>
+        <div class="col-3 text-center">
+            <button class="btn btn-outline-info" id="button-addon1">Block</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,44 @@
+<div *ngIf="isRoleSelected">
+  <!-- <div *ngIf="isAdd; else elseBlock"> -->
+  <!-- <div *ngIf="activeTab == 1; else elseBlock"> -->
+  <div>
+    <form (ngSubmit)="onSubmitAssignTask(taskForm)" #taskForm="ngForm">
+      <div class="row">
+          <div class="col-12">
+              <section class="example-section">
+                  <span class="example-list-section">
+                    <mat-checkbox class="example-margin"
+                                  [disabled]="isCheckboxDisabled"
+                                  [checked]="allComplete"
+                                  [color]="checkTask.color"
+                                  [indeterminate]="checkWebTaskSomeComplete()"
+                                  (change)="checkWebTaskSetAll($event.checked)">
+                      {{checkTask.name}}
+                    </mat-checkbox>
+                  </span>
+                  <span class="example-list-section">
+                    <ul>
+                      <li *ngFor="let subtask of checkTask.subtasks">
+                        <mat-checkbox [disabled]="isCheckboxDisabled"
+                                      [checked]="subtask.completed" 
+                                      [color]="subtask.color"
+                                      (change)="subtask.completed = $event.checked"
+                                      (ngModelChange)="checkWebTaskUpdateAllComplete()">
+                          {{subtask.name}}
+                        </mat-checkbox>
+                      </li>
+                    </ul>
+                  </span>
+              </section>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12 d-flex justify-content-end">
+              <button *ngIf="!isCheckboxDisabled" class="btn btn-outline-info" type="submit"
+                  id="button-addon2">Submit</button>
+          </div>
+      </div>
+    </form>
+  </div>
+  <!-- <ng-template #elseBlock>Content to render when condition is false. Remove</ng-template> -->
+</div>

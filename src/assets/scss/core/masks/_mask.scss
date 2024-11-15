@@ -1,0 +1,31 @@
+//
+// Mask
+//
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include transition($transition-base);
+}
+
+.mask-20 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    @include transition($transition-base);
+}
+
+.mask-15 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    @include transition($transition-base);
+}
+

@@ -1,0 +1,39 @@
+.img-top {
+    width: 100%;
+}
+
+.container-fluid{
+    // max-height: 94vh;
+    min-height: 94vh;
+    @media (max-width: 768px)
+    {
+        background-image:  url("../../../assets/img/bg/welcome.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover; 
+
+    }
+
+
+}
+
+.card{
+    border: none !important;
+}
+
+.card-header {
+    border-bottom: none !important;
+}
+
+.card-footer {
+    border-top: none !important;
+}
+
+.img-left{
+    // width: 35vh;
+    width: 25vh;
+}
+
+.img-right{
+    // width: 25vh;
+    width: 15vh;
+}

@@ -1,0 +1,27 @@
+.btn-outline-primary {
+    color: #8898aa;
+    border-color: #cad1d7;
+    font-family: Open Sans, sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    text-align: left;
+
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, 
+.btn-outline-primary:not(:disabled):not(.disabled).active, 
+.show > .btn-outline-primary.dropdown-toggle{
+    color: #8898aa; 
+    background-color: #fff; 
+    border-color: #cad1d7;
+}
+
+.btn-outline-primary:hover {
+    color: #8898aa;
+    background-color: #fff;
+    border-color: #cad1d7;
+}
+
+.visually-hidden{
+    visibility: hidden !important;
+}

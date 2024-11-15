@@ -1,0 +1,41 @@
+//
+// Type
+//
+
+
+// Paragraphs
+
+p {
+	font-size: $paragraph-font-size;
+	font-weight: $paragraph-font-weight;
+	line-height: $paragraph-line-height;
+}
+
+.lead {
+	font-size: $lead-font-size;
+  	font-weight: $lead-font-weight;
+	line-height: $paragraph-line-height;
+	margin-top: 1.5rem;
+
+	+ .btn-wrapper {
+		margin-top: 3rem;
+	}
+}
+
+.description {
+	font-size: $font-size-sm;
+}
+
+/* sub-title custom changes 2023/12/12 */
+.sub-title {
+	margin-bottom: 0.001rem !important;
+	font-size: 0.875rem !important;
+	font-weight: 300 !important;
+	color: #525f7f;
+}
+
+/* sub-paragraph custom changes 2023/12/12 */
+.sub-para {
+	color: #32325d;
+	font-weight: 600 !important;
+}

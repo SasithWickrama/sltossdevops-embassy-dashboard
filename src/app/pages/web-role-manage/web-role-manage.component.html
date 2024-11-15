@@ -1,0 +1,82 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"
+    style="min-height: 250px; background-image: url(assets/img/bg/welcome-cover.jpeg); background-size: cover; background-position: center top;">
+    <span class="mask bg-gradient-info opacity-8"></span>
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div *ngIf="taskAccess('ViewUserRole');else other_content" class="container-fluid mt--9">
+    <div class="row mb-4">
+    </div>
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Web Role</h3>
+                </div>
+                <div class="table-responsive">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row p-2">
+                                <div *ngIf="taskAccess('CreateUserRole')" class="col-4">
+                                    <a [routerLink]="['/role-management/web-roles-create']" class="btn btn-info">Create New Role</a>
+                                </div>
+                                <!-- <div *ngIf="taskAccess('AssignTaskToRole')" class="col-6">
+                                <a [routerLink]="['/task-management/web-tasks-assign']" class="btn btn-success">Assign Task into Role</a>
+                                </div> -->
+                            </div>                            
+                        </div>
+                        <div class="col-4 text-right">
+                            <div class="form-group">
+                                <input type="text" id="input-filter" class="form-control form-control-alternative" placeholder="Search" (keyup)="applyFilter($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Projects table -->
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container [matColumnDef]="column.name" *ngFor="let column of initColumns">
+                            <th mat-header-cell *matHeaderCellDef>{{ column.displayName }}</th>
+                            <ng-container *matCellDef="let emp">
+                                <td class="text-center"mat-cell *ngIf="(column.name == 'button');"> 
+                                    <a *ngIf="taskAccess('EditUserRole') && emp.roleName != 'ADMIN'" [routerLink]="['/role-management/web-roles-edit']"  [state]="emp.uid" class="btn btn-outline-info" >
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button *ngIf="taskAccess('RemoveUserRole') && emp.roleName != 'ADMIN'" (click)="submitDeleteRole(emp.uid, emp.roleName)" class="btn btn-outline-danger" >
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                                <td mat-cell> {{ emp[column.name] }} </td>
+                            </ng-container>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[4, 10, 20]"
+                        showFirstLastButtons
+                        aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+                <!-- <div class="card-footer py-4">
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #other_content >
+    <div class="container-fluid mt--9">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        Unfortunately, it seems that your current access privileges do not encompass this resource. Please reach out to your system administrator to explore the possibility of obtaining the necessary permissions. Thank you for your understanding.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

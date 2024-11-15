@@ -1,0 +1,144 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"
+    style="min-height: 250px; background-image: url(assets/img/bg/welcome-cover.jpeg); background-size: cover; background-position: center top;">
+    <span class="mask bg-gradient-info opacity-8"></span>
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div *ngIf="taskAccess('ViewMobileUser');else other_content" class="container-fluid mt--9">
+    <!-- Search bar and Create New User button -->
+    <div class="row mb-4">
+        <!-- <div class="col-md-4">
+            <div class="input-group input-group-alternative custom-input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search by Passport Number" type="text" [(ngModel)]="searchPassportNo">
+            </div>
+        </div> -->
+        
+    </div>
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Mobile Users</h3>
+                </div>
+                <div class="table-responsive">
+                    <!-- <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">NIC</th>
+                                <th scope="col">Emergency Contact</th>
+                                <th scope="col">Passport No</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of filteredMobUsers()">
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.lastName }}</td>
+                                <td>{{ user.nic }}</td>
+                                <td>{{ user.emergencyContact }}</td>
+                                <td>{{ user.passportNo }}</td>
+                                <td>
+                                    <a [routerLink]="['/user-management/mobile-users-update']"  [state]="user.uid" class="btn btn-outline-info" >
+                                        <i class="fas fa-edit"></i>
+                                    </a>                                  
+                                    <a [routerLink]="['/user-management/mobile-users-changepw']" [state]="user.uid" class="btn btn-outline-info"  >Change Password</a>
+                                    <button (click)="submitDeleteMobUser(user.uid, user.passportNo)" class="btn btn-outline-danger" >
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <div class="row">
+                        <div class="col-6">
+                            <!-- <div class="col-md-8" > -->
+                            <div class="col-md-8" *ngIf="taskAccess('CreateMobileUser')">
+                                <a [routerLink]="['/user-management/mobile-users-create']" class="btn btn-info">Create New User</a>
+                            </div>
+                        </div>
+                        <div class="col-4 text-right">
+                            <div class="form-group">
+                                <!-- <label class="form-control-label" for="input-username">Filter</label> -->
+                                <input type="text" id="input-filter" class="form-control form-control-alternative" placeholder="Search" (keyup)="applyFilter($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Projects table -->
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container [matColumnDef]="column.name" *ngFor="let column of initColumns">
+                            <th mat-header-cell *matHeaderCellDef>{{ column.displayName }}</th>
+                            <ng-container *matCellDef="let emp">
+                                <td class="text-center"mat-cell *ngIf="(column.name == 'button');"> 
+                                    <a *ngIf="taskAccess('EditMobileUser')" [routerLink]="['/user-management/mobile-users-update']"  [state]="emp.uid" class="btn btn-outline-info" >
+                                        <i class="fas fa-edit"></i>
+                                    </a> 
+                                    <a *ngIf="taskAccess('ChangePwMobileUser')" [routerLink]="['/user-management/mobile-users-changepw']" [state]="emp.uid" class="btn btn-outline-info">   Change Password </a>
+                                    <button *ngIf="taskAccess('RemoveMobileUser')" (click)="submitDeleteMobUser(emp.uid, emp.passportNo)" class="btn btn-outline-danger" >
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                                <td mat-cell> {{ emp[column.name] }} </td>
+                            </ng-container>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[4, 10, 20]"
+                        showFirstLastButtons
+                        aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+                <!-- <div class="card-footer py-4">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                                    <i class="fas fa-angle-left"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="javascript:void(0)">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">2 <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">
+                                    <i class="fas fa-angle-right"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #other_content >
+    <div class="container-fluid mt--9">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        Unfortunately, it seems that your current access privileges do not encompass this resource. Please reach out to your system administrator to explore the possibility of obtaining the necessary permissions. Thank you for your understanding.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,250 @@
+<div class="header pb-6 pt-5 pt-md-8 d-flex align-items-center" style="min-height: 250px; background-image: url(assets/img/bg/welcome-cover.jpeg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-info opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+          <!-- <h1 class="display-2 text-white">Hello Jesse</h1> -->
+          <!-- <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p> -->
+          <!-- <a href="#!" class="btn btn-info">Edit profile</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  <img src="assets/img/user/Avatar-01.jpg" class="rounded-circle">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+            <!-- <div class="d-flex justify-content-between">
+              <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
+            </div> -->
+          </div>
+          <div class="card-body pt-0 pt-md-4">
+            <div class="row">
+              <div class="col">
+                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                  <!-- <div>
+                    <span class="heading">22</span>
+                    <span class="description">Appointments</span>
+                  </div> -->
+                  <!-- <div>
+                    <span class="heading">10</span>
+                    <span class="description">Photos</span>
+                  </div>
+                  <div>
+                    <span class="heading">89</span>
+                    <span class="description">Comments</span>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <h3>
+                {{ mobUser.fullName }}<span class="font-weight-light">, {{ mobUser.age }}</span>
+              </h3>
+              <div class="h5 font-weight-300">
+                <i class="ni location_pin mr-2"></i>{{ mobUser.slAddress }}
+              </div>
+              <!-- <div class="h5 mt-4">
+                <i class="ni business_briefcase-24 mr-2"></i>{{ mobUser.nic }}
+              </div> -->
+              <div>
+                <i class="ni education_hat mr-2"></i>{{ mobUser.passportNo }}
+              </div>
+              <hr class="my-4" />
+              <p></p>
+              <h3>
+                <span class="font-weight-light">Emergency Contact — </span>{{ mobUser.emergencyContact }}
+              </h3>
+              <!-- <a href="javascript:void(0)">Show more</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">User account</h3>
+              </div>
+              <!-- <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div> -->
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <form> -->
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-username">First Name</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.firstName }}</p>
+                    <!-- <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse"> -->
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-email">Last Name</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.lastName }}</p>
+                    <!-- <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"> -->
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-username">Full Name</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.fullName }}</p>
+                    <!-- <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse"> -->
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-first-name">NIC</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.nic }}</p>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-last-name">Passport Number</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.passportNo }}</p>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-last-name">Gender</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.gender }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-first-name">Date of Birth</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.dateOfBirth }}</p>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-last-name">Age</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.age }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-first-name">Sri Lanka Address</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <h1 class="sub-title" for="input-address">Emergency Contact</h1>
+                    <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                  </div>
+                </div>
+              </div>
+              <h6 class="heading-extra-small text-muted mb-4">UAE Contact information</h6>
+              <div class="pl-2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-address">UAE Address</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-country">UAE Mobile Number</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-city">UAE Contact Name</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-country">UAE Contact Number</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h6 class="heading-extra-small text-muted mb-4">SL Contact information</h6>
+              <div class="pl-2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-address">Address</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-country">Mobile Number</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-city">SL Contact Name</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <h1 class="sub-title" for="input-country">SL Contact Number</h1>
+                      <p class="sub-para" id="input-username" style="margin-left:1rem">{{ mobUser.slAddress }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <hr class="my-4" /> -->
+            <!-- Description -->
+            <!-- <h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div> -->
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

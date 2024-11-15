@@ -1,0 +1,80 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"
+    style="min-height: 250px; background-image: url(assets/img/bg/welcome-cover.jpeg); background-size: cover; background-position: center top;">
+    <span class="mask bg-gradient-info opacity-8"></span>
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div *ngIf="taskAccess('AssignTaskToRole');else other_content" class="container-fluid mt--9">
+    <div class="row mb-4">
+    </div>
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Web Tasks Assign to Web Role</h3>
+                </div>
+                <div class="card-body">
+                        <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+                            <!-- <h6 class="heading-small text-muted mb-4">Task Information</h6> -->
+                            <div class="pl-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Select Role</mat-label>
+                                            <mat-select id='select-role' [(ngModel)]="roleSelected" name="role" required 
+                                                  [ngClass]="{'is-invalid': userForm.submitted && !userForm.controls['role'].valid}">
+                                                <mat-option *ngFor="let role of webRole; index as i;" [value]="{ uid: role.uid, role: role.roleName }">{{ role.roleName }}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="userForm.submitted && !userForm.controls['role'].valid">{{getErrorMessage()}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-outline-info" type="submit" id="button-addon1">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <hr/>
+                        <div>
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false" class="nav-tabs">
+                                <li [ngbNavItem]="1">
+                                    <a ngbNavLink (click)="tabChange()">Add</a>
+                                    <ng-template ngbNavContent>
+                                        <router-outlet name="tabBody"></router-outlet>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2">
+                                    <a ngbNavLink (click)="tabChange()">Remove</a>
+                                    <ng-template ngbNavContent>
+                                        <router-outlet name="tabBody"></router-outlet>
+                                    </ng-template>
+                                </li>
+                            </ul>
+
+                            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                        </div>
+                </div>
+                <!-- <div class="card-footer py-4">
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #other_content >
+    <div class="container-fluid mt--9">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        Unfortunately, it seems that your current access privileges do not encompass this resource. Please reach out to your system administrator to explore the possibility of obtaining the necessary permissions. Thank you for your understanding.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
